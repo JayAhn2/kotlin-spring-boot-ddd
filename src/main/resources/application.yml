@@ -1,6 +1,6 @@
-spring.datasource.driver-class-name: org.h2.Driver
-spring.datasource.url: jdbc:h2:file:./data/testdb
-spring.datasource.username: sa
-spring.datasource.password: password
+spring.datasource.driver-class-name: org.mariadb.jdbc.Driver
+spring.datasource.url: jdbc:mariadb://localhost:3306/kotlin_boot
+spring.datasource.username: root
+spring.datasource.password: root
 spring.datasource.schema: classpath:sql/schema.sql
 spring.datasource.initialization-mode: always

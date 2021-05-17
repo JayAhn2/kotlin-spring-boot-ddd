@@ -1,6 +1,9 @@
+import nu.studer.gradle.jooq.JooqEdition
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jooq.meta.jaxb.ForcedType
 
 plugins {
+    id("nu.studer.jooq") version "5.2"
     id("org.springframework.boot") version "2.4.5"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.4.32"
@@ -22,10 +25,10 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.valiktor:valiktor-core:0.12.0")
+    implementation("org.mariadb.jdbc:mariadb-java-client:2.4.1")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-
 }
 
 tasks.withType<KotlinCompile> {
@@ -37,4 +40,52 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+jooq {
+    version.set("3.14.7")
+    edition.set(JooqEdition.OSS)
+
+    configurations {
+        create("main") {
+            jooqConfiguration.apply {
+                logging = org.jooq.meta.jaxb.Logging.WARN
+                jdbc.apply {
+                    driver = "org.mariadb.jdbc.Driver"
+                    url = "jdbc:mariadb://localhost:3306/kotlin_boot"
+                    user = "root"
+                    password = "root"
+                }
+                generator.apply {
+                    name = "org.jooq.codegen.DefaultGenerator"
+                    database.apply {
+                        name = "org.jooq.meta.mariadb.MariaDBDatabase"
+                        forcedTypes.addAll(
+                            arrayOf(
+                                ForcedType()
+                                    .withName("varchar")
+                                    .withIncludeExpression(".*")
+                                    .withIncludeTypes("JSONB?"),
+                                ForcedType()
+                                    .withName("varchar")
+                                    .withIncludeExpression(".*")
+                                    .withIncludeTypes("INET")
+                            ).toList()
+                        )
+                    }
+                    generate.apply {
+                        isDeprecated = false
+                        isRecords = false
+                        isImmutablePojos = false
+                        isFluentSetters = false
+                    }
+                    target.apply {
+                        packageName = "com.example.kotlinspringboot"
+                        directory = "src/generated/jooq"
+                    }
+                    strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
+                }
+            }
+        }
+    }
 }

@@ -1,19 +1,17 @@
 
 ### Post "Hello!"
-POST http://localhost:8080
+POST http://localhost:8080/books
 Content-Type: application/json
 
 {
-    "text": "Hello!"
+    "title": "Also Sprach Zarathustra",
+    "isbn": "9781452602561",
+    "pages": 959,
+    "authorId": 1
 }
 
 ### Post "Bonjour!"
-POST http://localhost:8080
-Content-Type: application/json
-
-{
-    "text": "Bonjour!"
-}
+DELETE http://localhost:8080/books/100918099238191104
 
 ### Post "Privet!"
 POST http://localhost:8080
