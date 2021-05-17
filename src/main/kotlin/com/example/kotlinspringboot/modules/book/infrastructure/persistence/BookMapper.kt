@@ -9,7 +9,7 @@ object BookMapper {
 
     fun mapToDomainEntity(bookJdbcEntity: BookJdbcEntity): Book {
         return Book(
-            BookId(bookJdbcEntity.authorId),
+            BookId(bookJdbcEntity.id),
             Title(bookJdbcEntity.title),
             bookJdbcEntity.isbn,
             bookJdbcEntity.pages,
@@ -17,7 +17,7 @@ object BookMapper {
         )
     }
 
-    fun mapToPersistenceEntity(book: Book): BookJdbcEntity {
+    fun mapToJdbcEntity(book: Book): BookJdbcEntity {
         return BookJdbcEntity(
             book.id.value,
             book.title.value,

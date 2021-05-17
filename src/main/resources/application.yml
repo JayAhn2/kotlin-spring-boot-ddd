@@ -4,3 +4,11 @@ spring.datasource.username: root
 spring.datasource.password: root
 spring.datasource.schema: classpath:sql/schema.sql
 spring.datasource.initialization-mode: always
+spring:
+  jooq:
+    sql-dialect: mariadb
+
+logging.level:
+  root: info
+  org:
+    jooq.Constants.level: warn

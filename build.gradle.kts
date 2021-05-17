@@ -26,9 +26,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.valiktor:valiktor-core:0.12.0")
-    implementation("org.mariadb.jdbc:mariadb-java-client:2.4.1")
+    implementation("org.mariadb.jdbc:mariadb-java-client:2.7.1")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    jooqGenerator("org.mariadb.jdbc:mariadb-java-client:2.7.1")
+    jooqGenerator("org.jooq:jooq-kotlin:3.14.7")
 }
 
 tasks.withType<KotlinCompile> {
@@ -60,6 +63,7 @@ jooq {
                     name = "org.jooq.codegen.DefaultGenerator"
                     database.apply {
                         name = "org.jooq.meta.mariadb.MariaDBDatabase"
+                        inputSchema = "kotlin_boot"
                         forcedTypes.addAll(
                             arrayOf(
                                 ForcedType()
@@ -81,7 +85,7 @@ jooq {
                     }
                     target.apply {
                         packageName = "com.example.kotlinspringboot"
-                        directory = "src/generated/jooq"
+                        directory = "build/generated/jooq"
                     }
                     strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
                 }

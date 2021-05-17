@@ -26,6 +26,6 @@ class NewBookService(
         val savedBook = bookPersistenceAdapter.create(Book.newBook(command))
 
         // should be replaced by jooq projection
-        return bookQueryRepository.findBookById(savedBook.authorId.value)
+        return bookQueryRepository.findBookById(savedBook.id.value)
     }
 }
