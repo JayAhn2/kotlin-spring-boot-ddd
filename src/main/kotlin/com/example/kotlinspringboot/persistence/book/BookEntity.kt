@@ -1,11 +1,11 @@
-package com.example.kotlinspringboot.modules.book.infrastructure.persistence
+package com.example.kotlinspringboot.persistence.book
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.MappedCollection
 import org.springframework.data.relational.core.mapping.Table
 
 @Table("book")
-data class BookJdbcEntity(
+data class BookEntity(
     @Id val id: Long,
     val title: String,
     val isbn: String,

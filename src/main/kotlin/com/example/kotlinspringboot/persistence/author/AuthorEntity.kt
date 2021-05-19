@@ -1,10 +1,10 @@
-package com.example.kotlinspringboot.modules.author.infrastructure.persistence
+package com.example.kotlinspringboot.persistence.author
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 
 @Table("author")
-data class AuthorJdbcEntity(
+data class AuthorEntity(
     @Id val id: Long,
     val firstName: String,
     val lastName: String,

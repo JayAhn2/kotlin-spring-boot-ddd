@@ -16,7 +16,6 @@ class AddAuthorService(
     override fun invoke(command: AddAuthorCommand): BookDto {
         val book = bookPersistenceAdapter.findById(command.bookId)
         book.addAuthor(command)
-        println(book)
         bookPersistenceAdapter.update(book)
 
         return bookQueryRepository.fetchById(book.id.value)
