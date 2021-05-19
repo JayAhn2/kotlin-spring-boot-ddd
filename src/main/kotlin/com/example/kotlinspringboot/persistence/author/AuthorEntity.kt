@@ -1,6 +1,7 @@
 package com.example.kotlinspringboot.persistence.author
 
 import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.MappedCollection
 import org.springframework.data.relational.core.mapping.Table
 
 @Table("author")
@@ -10,8 +11,9 @@ data class AuthorEntity(
     val lastName: String,
     val age: Int,
     val biography: String?,
+    @MappedCollection(idColumn = "author_id")
     val bookIds: Set<BookRef> = hashSetOf()
 )
 
-@Table("book_author")
+@Table("author_book")
 data class BookRef(val bookId: Long)

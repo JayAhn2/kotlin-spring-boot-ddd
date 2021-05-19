@@ -7,7 +7,6 @@ data class AuthorDto(
     @JsonProperty("firstName") val firstName: String,
     @JsonProperty("lastName") val lastName: String,
     @JsonProperty("age") val age: Int,
+    @JsonProperty("biography") val biography: String,
     @JsonProperty("books") val books: Set<Long>?
-) {
-
-}
+)

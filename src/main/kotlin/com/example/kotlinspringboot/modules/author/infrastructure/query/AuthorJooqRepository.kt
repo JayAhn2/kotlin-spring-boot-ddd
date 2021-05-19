@@ -18,6 +18,7 @@ class AuthorJooqRepository(private val ctx: DSLContext) : AuthorQueryRepository 
             key("firstName").value(author.FIRST_NAME),
             key("lastName").value(author.LAST_NAME),
             key("age").value(author.AGE),
+            key("biography").value(author.BIOGRAPHY),
             key("books").value(
                 field(
                     select(jsonArrayAgg(authorBook.BOOK_ID))

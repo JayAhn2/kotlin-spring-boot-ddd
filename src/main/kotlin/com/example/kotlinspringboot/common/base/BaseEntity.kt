@@ -1,4 +1,3 @@
 package com.example.kotlinspringboot.common.base
 
-abstract class BaseEntity {
-}
+abstract class BaseEntity {}
