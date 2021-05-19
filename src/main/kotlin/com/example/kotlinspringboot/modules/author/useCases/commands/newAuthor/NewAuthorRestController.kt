@@ -5,11 +5,13 @@ import com.example.kotlinspringboot.modules.author.domain.valueObjects.Age
 import com.example.kotlinspringboot.modules.author.domain.valueObjects.Biography
 import com.example.kotlinspringboot.modules.author.domain.valueObjects.Name
 import com.example.kotlinspringboot.modules.author.infrastructure.query.dtos.AuthorDto
+import io.swagger.annotations.Api
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(RestResourcePath.AUTHORS)
+@Api(tags = ["authors"])
 class NewAuthorRestController(private val newAuthorService: NewAuthorService) {
 
     @PostMapping

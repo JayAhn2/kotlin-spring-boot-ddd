@@ -9,6 +9,6 @@ spring:
     sql-dialect: mariadb
 
 logging.level:
-  root: debug
+  root: info
   org:
     jooq.Constants.level: warn

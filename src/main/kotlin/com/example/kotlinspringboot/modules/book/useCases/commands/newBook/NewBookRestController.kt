@@ -5,11 +5,13 @@ import com.example.kotlinspringboot.modules.book.domain.valueObjects.Isbn
 import com.example.kotlinspringboot.modules.book.domain.valueObjects.Page
 import com.example.kotlinspringboot.modules.book.domain.valueObjects.Title
 import com.example.kotlinspringboot.modules.book.infrastructure.query.dtos.BookDto
+import io.swagger.annotations.Api
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(RestResourcePath.BOOKS)
+@Api(tags = ["books"])
 class NewBookRestController(private val newBookService: NewBookService) {
 
     @PostMapping
