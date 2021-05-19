@@ -26,6 +26,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.valiktor:valiktor-core:0.12.0")
+    implementation("org.valiktor:valiktor-spring:0.12.0")
     implementation("org.mariadb.jdbc:mariadb-java-client:2.7.1")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

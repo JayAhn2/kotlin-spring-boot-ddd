@@ -1,29 +1,32 @@
 package com.example.kotlinspringboot.modules.book.infrastructure.persistence
 
+import com.example.kotlinspringboot.common.interfaces.ModelMapper
 import com.example.kotlinspringboot.modules.author.domain.aggregate.AuthorId
 import com.example.kotlinspringboot.modules.book.domain.aggregate.Book
 import com.example.kotlinspringboot.modules.book.domain.aggregate.BookId
+import com.example.kotlinspringboot.modules.book.domain.valueObjects.Isbn
+import com.example.kotlinspringboot.modules.book.domain.valueObjects.Page
 import com.example.kotlinspringboot.modules.book.domain.valueObjects.Title
 
-object BookMapper {
+object BookMapper : ModelMapper<Book, BookJdbcEntity> {
 
-    fun mapToDomainEntity(bookJdbcEntity: BookJdbcEntity): Book {
+    override fun mapToDomainEntity(model: BookJdbcEntity): Book {
         return Book(
-            BookId(bookJdbcEntity.id),
-            Title(bookJdbcEntity.title),
-            bookJdbcEntity.isbn,
-            bookJdbcEntity.pages,
-            AuthorId(bookJdbcEntity.authorId)
+            BookId(model.id),
+            Title(model.title),
+            Isbn(model.isbn),
+            Page(model.pages),
+            model.authors.map { AuthorId(it.authorId) }.toSet()
         )
     }
 
-    fun mapToJdbcEntity(book: Book): BookJdbcEntity {
+    override fun mapToJdbcEntity(model: Book): BookJdbcEntity {
         return BookJdbcEntity(
-            book.id.value,
-            book.title.value,
-            book.isbn,
-            book.pages,
-            book.authorId.value
+            model.id.value,
+            model.title.value,
+            model.isbn.value,
+            model.pages.value,
+            model.authors.map { AuthorRef(it.value) }.toSet()
         )
     }
 }

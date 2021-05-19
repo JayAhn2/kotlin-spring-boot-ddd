@@ -1,29 +1,31 @@
 package com.example.kotlinspringboot.modules.book.infrastructure.persistence
 
 import com.example.kotlinspringboot.common.exceptions.EntityNotFoundException
+import com.example.kotlinspringboot.common.interfaces.PersistenceAdapter
 import com.example.kotlinspringboot.modules.book.domain.aggregate.Book
 import com.example.kotlinspringboot.modules.book.domain.aggregate.BookId
 import org.springframework.stereotype.Service
 
 
 @Service
-class BookPersistenceAdapter(private val bookJdbcRepository: BookJdbcRepository) {
+class BookPersistenceAdapter(private val bookJdbcRepository: BookJdbcRepository) :
+    PersistenceAdapter<Book, BookId> {
 
-    fun findById(bookId: BookId): Book {
-        val result = bookJdbcRepository.findById(bookId.value)
+    override fun findById(id: BookId): Book {
+        val result = bookJdbcRepository.findById(id.value)
         if (result.isEmpty) {
-            throw EntityNotFoundException("The book is not found with id ${bookId.value}")
+            throw EntityNotFoundException("The book is not found with id ${id.value}")
         }
         return BookMapper.mapToDomainEntity(result.get())
     }
 
-    fun create(book: Book): Book {
-        val result = bookJdbcRepository.insert(BookMapper.mapToJdbcEntity(book))
+    override fun insert(domain: Book): Book {
+        val result = bookJdbcRepository.insert(BookMapper.mapToJdbcEntity(domain))
         return BookMapper.mapToDomainEntity(result)
     }
 
-    fun update(book: Book): Book {
-        val result = bookJdbcRepository.update(BookMapper.mapToJdbcEntity(book))
+    override fun update(domain: Book): Book {
+        val result = bookJdbcRepository.update(BookMapper.mapToJdbcEntity(domain))
         return BookMapper.mapToDomainEntity(result)
     }
 

@@ -16,6 +16,4 @@ data class BookId(
     companion object {
         fun nextId() = BookId(IdGenerator.nextId())
     }
-
-    override fun toString(): String = value.toString()
 }

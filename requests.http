@@ -1,28 +1,21 @@
 
-### Post "Hello!"
-POST http://localhost:8080/books
+### Post "book!"
+POST http://localhost:8080/api/books
 Content-Type: application/json
 
 {
     "title": "Also Sprach Zarathustra",
-    "isbn": "9781452602561",
-    "pages": 959,
-    "authorId": 1
+    "isbn": "1234567891",
+    "pages": 959
 }
 
-### Post "Bonjour!"
-DELETE http://localhost:8080/books/100918099238191104
-
-### Post "Privet!"
-POST http://localhost:8080
+### Add author
+POST http://localhost:8080/api/books/102443001606832128/authors
 Content-Type: application/json
 
 {
-    "text": "Privet!"
+    "authorId": 7
 }
-
-### get all the messages
-GET http://localhost:8080/
 
 
 
