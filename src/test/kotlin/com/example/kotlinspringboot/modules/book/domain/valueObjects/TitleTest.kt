@@ -24,11 +24,4 @@ internal class TitleTest {
     internal fun `constructor - should throw exception - when empty`(value: String) {
         assertThrows<ConstraintViolationException> { Title(value) }
     }
-
-    @Test
-    internal fun `toString - should return string`() {
-        val result = Title("Sex and Character").toString()
-
-        assertThat("Sex and Character").isEqualTo(result)
-    }
 }

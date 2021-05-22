@@ -1,7 +1,7 @@
 package com.example.kotlinspringboot.modules.book.useCases.commands.addAuthor
 
 import com.example.kotlinspringboot.common.interfaces.UseCase
-import com.example.kotlinspringboot.modules.book.domain.events.AuthorAddedToBookEvent
+import com.example.kotlinspringboot.modules.book.domain.events.AuthorAddedToBookDomainEvent
 import com.example.kotlinspringboot.modules.book.infrastructure.persistence.BookPersistenceAdapter
 import com.example.kotlinspringboot.modules.book.infrastructure.query.BookQueryRepository
 import com.example.kotlinspringboot.modules.book.infrastructure.query.dtos.BookDto
@@ -23,7 +23,7 @@ class AddAuthorService(
 
         // This event publish should be done inside of the domain.
         this.publisher.publishEvent(
-            AuthorAddedToBookEvent(book.id.value, command.authorId.value)
+            AuthorAddedToBookDomainEvent(book.id.value, command.authorId.value)
         )
 
         return bookQueryRepository.fetchById(book.id.value)

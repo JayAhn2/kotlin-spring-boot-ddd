@@ -2,7 +2,7 @@ package com.example.kotlinspringboot.modules.author.useCases.commands.addBookToA
 
 import com.example.kotlinspringboot.modules.author.domain.aggregate.AuthorId
 import com.example.kotlinspringboot.modules.book.domain.aggregate.BookId
-import com.example.kotlinspringboot.modules.book.domain.events.AuthorAddedToBookEvent
+import com.example.kotlinspringboot.modules.book.domain.events.AuthorAddedToBookDomainEvent
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
 
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class AddBookToAuthorEventHandler(private val addBookToAuthorService: AddBookToAuthorService) {
 
     @EventListener
-    fun handleEvent(event: AuthorAddedToBookEvent) {
+    fun handleEvent(event: AuthorAddedToBookDomainEvent) {
         val command = AddBookToAuthorCommand(BookId(event.bookId), AuthorId(event.authorId))
         this.addBookToAuthorService.invoke(command)
     }
