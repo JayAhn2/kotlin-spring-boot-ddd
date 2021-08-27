@@ -1,13 +1,13 @@
 package com.example.kotlinspringboot.modules.book.useCases.commands.deleteBook
 
-import com.example.kotlinspringboot.common.constant.RestResourcePath
+import com.example.kotlinspringboot.common.constant.REST_BOOKS
 import com.example.kotlinspringboot.modules.book.domain.aggregate.BookId
 import io.swagger.annotations.Api
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping(RestResourcePath.BOOKS)
+@RequestMapping(REST_BOOKS)
 @Api(tags = ["books"])
 class DeleteBookRestController(private val deleteBookService: DeleteBookService) {
 

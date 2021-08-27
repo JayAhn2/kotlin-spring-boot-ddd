@@ -21,7 +21,7 @@ class AddAuthorService(
         book.addAuthor(command)
         bookPersistenceAdapter.update(book)
 
-        // This event publish should be done inside of the domain.
+        // This event publishing should be done inside the domain.
         this.publisher.publishEvent(
             AuthorAddedToBookDomainEvent(book.id.value, command.authorId.value)
         )

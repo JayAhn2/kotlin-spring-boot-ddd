@@ -1,6 +1,6 @@
 package com.example.kotlinspringboot.modules.book.useCases.commands.addAuthor
 
-import com.example.kotlinspringboot.common.constant.RestResourcePath
+import com.example.kotlinspringboot.common.constant.REST_BOOKS
 import com.example.kotlinspringboot.modules.author.domain.aggregate.AuthorId
 import com.example.kotlinspringboot.modules.book.domain.aggregate.BookId
 import com.example.kotlinspringboot.modules.book.infrastructure.query.dtos.BookDto
@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiResponses
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping(RestResourcePath.BOOKS)
+@RequestMapping(REST_BOOKS)
 @Api(tags = ["books"])
 class AddAuthorRestController(private val addAuthorService: AddAuthorService) {
 
