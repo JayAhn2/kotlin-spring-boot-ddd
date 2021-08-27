@@ -1,4 +1,4 @@
-package com.example.kotlinspringboot.modules.book.useCases.commands.deleteBook
+package com.example.kotlinspringboot.modules.book.useCases.rest.deleteBook
 
 import com.example.kotlinspringboot.common.interfaces.UseCase
 import com.example.kotlinspringboot.modules.book.infrastructure.persistence.BookPersistenceAdapter

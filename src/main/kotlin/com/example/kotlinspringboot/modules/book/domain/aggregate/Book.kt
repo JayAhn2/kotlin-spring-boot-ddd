@@ -5,8 +5,8 @@ import com.example.kotlinspringboot.modules.author.domain.aggregate.AuthorId
 import com.example.kotlinspringboot.modules.book.domain.valueObjects.Isbn
 import com.example.kotlinspringboot.modules.book.domain.valueObjects.Page
 import com.example.kotlinspringboot.modules.book.domain.valueObjects.Title
-import com.example.kotlinspringboot.modules.book.useCases.commands.addAuthor.AddAuthorCommand
-import com.example.kotlinspringboot.modules.book.useCases.commands.newBook.NewBookCommand
+import com.example.kotlinspringboot.modules.book.useCases.rest.addAuthor.AddAuthorCommand
+import com.example.kotlinspringboot.modules.book.useCases.rest.newBook.NewBookCommand
 
 data class Book(
     val id: BookId,

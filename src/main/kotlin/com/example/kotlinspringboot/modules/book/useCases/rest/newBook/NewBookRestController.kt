@@ -1,4 +1,4 @@
-package com.example.kotlinspringboot.modules.book.useCases.commands.newBook
+package com.example.kotlinspringboot.modules.book.useCases.rest.newBook
 
 import com.example.kotlinspringboot.common.constant.REST_BOOKS
 import com.example.kotlinspringboot.modules.book.domain.valueObjects.Isbn

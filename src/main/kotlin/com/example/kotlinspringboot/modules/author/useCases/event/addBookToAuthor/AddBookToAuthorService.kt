@@ -1,4 +1,4 @@
-package com.example.kotlinspringboot.modules.author.useCases.commands.addBookToAuthor
+package com.example.kotlinspringboot.modules.author.useCases.event.addBookToAuthor
 
 import com.example.kotlinspringboot.common.interfaces.UseCase
 import com.example.kotlinspringboot.modules.author.infrastructure.persistence.AuthorPersistenceAdapter

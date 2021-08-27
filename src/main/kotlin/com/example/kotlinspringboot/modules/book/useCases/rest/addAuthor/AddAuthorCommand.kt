@@ -1,4 +1,4 @@
-package com.example.kotlinspringboot.modules.book.useCases.commands.addAuthor
+package com.example.kotlinspringboot.modules.book.useCases.rest.addAuthor
 
 import com.example.kotlinspringboot.common.base.BaseCommand
 import com.example.kotlinspringboot.modules.author.domain.aggregate.AuthorId

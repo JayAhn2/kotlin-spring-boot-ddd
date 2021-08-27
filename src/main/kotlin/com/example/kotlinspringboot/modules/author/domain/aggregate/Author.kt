@@ -4,8 +4,8 @@ import com.example.kotlinspringboot.common.base.BaseAggregate
 import com.example.kotlinspringboot.modules.author.domain.valueObjects.Age
 import com.example.kotlinspringboot.modules.author.domain.valueObjects.Biography
 import com.example.kotlinspringboot.modules.author.domain.valueObjects.Name
-import com.example.kotlinspringboot.modules.author.useCases.commands.addBookToAuthor.AddBookToAuthorCommand
-import com.example.kotlinspringboot.modules.author.useCases.commands.newAuthor.NewAuthorCommand
+import com.example.kotlinspringboot.modules.author.useCases.event.addBookToAuthor.AddBookToAuthorCommand
+import com.example.kotlinspringboot.modules.author.useCases.rest.newAuthor.NewAuthorCommand
 import com.example.kotlinspringboot.modules.book.domain.aggregate.BookId
 
 data class Author(

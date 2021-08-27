@@ -1,4 +1,4 @@
-package com.example.kotlinspringboot.modules.author.useCases.commands.newAuthor
+package com.example.kotlinspringboot.modules.author.useCases.rest.newAuthor
 
 import com.example.kotlinspringboot.common.base.BaseCommand
 import com.example.kotlinspringboot.modules.author.domain.valueObjects.Age

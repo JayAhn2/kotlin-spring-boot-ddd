@@ -1,4 +1,4 @@
-package com.example.kotlinspringboot.modules.author.useCases.commands.newAuthor
+package com.example.kotlinspringboot.modules.author.useCases.rest.newAuthor
 
 data class NewAuthorRequest(
     val firstName: String,

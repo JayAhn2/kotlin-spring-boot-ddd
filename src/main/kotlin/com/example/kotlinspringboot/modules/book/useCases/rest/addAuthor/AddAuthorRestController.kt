@@ -1,4 +1,4 @@
-package com.example.kotlinspringboot.modules.book.useCases.commands.addAuthor
+package com.example.kotlinspringboot.modules.book.useCases.rest.addAuthor
 
 import com.example.kotlinspringboot.common.constant.REST_BOOKS
 import com.example.kotlinspringboot.modules.author.domain.aggregate.AuthorId
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*
 @Api(tags = ["books"])
 class AddAuthorRestController(private val addAuthorService: AddAuthorService) {
 
-    @PostMapping("{id}/authors")
+    @PostMapping("{id}/authors/{authorId}")
     @ResponseBody
     @ApiOperation(value = "Display greeting message to admin user", response = BookDto::class)
     @ApiResponses(
@@ -25,8 +25,8 @@ class AddAuthorRestController(private val addAuthorService: AddAuthorService) {
             ApiResponse(code = 404, message = "The resource not found")
         ]
     )
-    fun addAuthor(@PathVariable id: Long, @RequestBody request: AddAuthorRequest): BookDto {
-        val command = AddAuthorCommand(BookId(id), AuthorId(request.authorId))
+    fun addAuthor(@PathVariable id: Long, @PathVariable authorId: Long): BookDto {
+        val command = AddAuthorCommand(BookId(id), AuthorId(authorId))
         return addAuthorService.invoke(command)
     }
 }

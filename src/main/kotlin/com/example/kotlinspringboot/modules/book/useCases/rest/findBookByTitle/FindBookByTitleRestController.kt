@@ -1,4 +1,4 @@
-package com.example.kotlinspringboot.modules.book.useCases.queries.findBookByTitle
+package com.example.kotlinspringboot.modules.book.useCases.rest.findBookByTitle
 
 import com.example.kotlinspringboot.common.constant.REST_BOOKS
 import com.example.kotlinspringboot.modules.book.infrastructure.query.BookQueryRepository

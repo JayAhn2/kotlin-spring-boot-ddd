@@ -1,4 +1,4 @@
-package com.example.kotlinspringboot.modules.book.useCases.commands.addAuthor
+package com.example.kotlinspringboot.modules.book.useCases.rest.addAuthor
 
 import com.example.kotlinspringboot.common.interfaces.UseCase
 import com.example.kotlinspringboot.modules.book.domain.events.AuthorAddedToBookDomainEvent

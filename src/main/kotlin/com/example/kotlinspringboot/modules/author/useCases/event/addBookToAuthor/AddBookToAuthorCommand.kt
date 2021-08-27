@@ -1,4 +1,4 @@
-package com.example.kotlinspringboot.modules.author.useCases.commands.addBookToAuthor
+package com.example.kotlinspringboot.modules.author.useCases.event.addBookToAuthor
 
 import com.example.kotlinspringboot.modules.author.domain.aggregate.AuthorId
 import com.example.kotlinspringboot.modules.book.domain.aggregate.BookId
