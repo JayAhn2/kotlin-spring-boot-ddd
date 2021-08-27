@@ -1,9 +1,11 @@
 CREATE TABLE IF NOT EXISTS book
 (
-    id    bigint(20)   NOT NULL,
-    title VARCHAR(100) NOT NULL,
-    isbn  varchar(100) NOT NULL,
-    pages INTEGER      NOT NULL,
+    id               bigint(20)     NOT NULL,
+    title            VARCHAR(100)   NOT NULL,
+    isbn             varchar(100)   NOT NULL,
+    pages            INTEGER        NOT NULL,
+    price            DECIMAL(13, 2) not null,
+    publication_year INTEGER        NOT NULL,
     PRIMARY KEY (id)
 );
 

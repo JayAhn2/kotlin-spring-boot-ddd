@@ -5,10 +5,12 @@ import com.example.kotlinspringboot.modules.author.domain.aggregate.AuthorId
 import com.example.kotlinspringboot.modules.book.domain.aggregate.Book
 import com.example.kotlinspringboot.modules.book.domain.aggregate.BookId
 import com.example.kotlinspringboot.modules.book.domain.valueObjects.Isbn
+import com.example.kotlinspringboot.modules.book.domain.valueObjects.Money
 import com.example.kotlinspringboot.modules.book.domain.valueObjects.Page
 import com.example.kotlinspringboot.modules.book.domain.valueObjects.Title
 import com.example.kotlinspringboot.persistence.book.AuthorRef
 import com.example.kotlinspringboot.persistence.book.BookEntity
+import java.time.Year
 
 object BookMapper : ModelMapper<Book, BookEntity> {
 
@@ -18,6 +20,8 @@ object BookMapper : ModelMapper<Book, BookEntity> {
             Title(model.title),
             Isbn(model.isbn),
             Page(model.pages),
+            Money(model.price),
+            Year.of(model.publicationYear),
             model.authors.map { AuthorId(it.authorId) }.toSet()
         )
     }
@@ -28,6 +32,8 @@ object BookMapper : ModelMapper<Book, BookEntity> {
             model.title.value,
             model.isbn.value,
             model.pages.value,
+            model.price.value,
+            model.publicationYear.value,
             model.authors.map { AuthorRef(it.value) }.toSet()
         )
     }
