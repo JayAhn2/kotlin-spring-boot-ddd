@@ -38,3 +38,6 @@ out/
 
 ### Local profile ###
 application-local.yml
+
+### Docker ###
+/mysql_data/

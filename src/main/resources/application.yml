@@ -1,12 +1,14 @@
-spring.datasource.driver-class-name: org.mariadb.jdbc.Driver
-spring.datasource.url: jdbc:mariadb://localhost:3306/kotlin_boot
-spring.datasource.username: root
-spring.datasource.password: root
-spring.datasource.schema: classpath:sql/schema.sql
-spring.datasource.initialization-mode: always
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/kotlin_boot
+    username: admin
+    password: pass
   jooq:
-    sql-dialect: mariadb
+    sql-dialect: mysql
+  sql:
+    init:
+      mode: never
 
 logging.level:
   root: info

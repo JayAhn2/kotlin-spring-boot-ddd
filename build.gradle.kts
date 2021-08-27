@@ -3,8 +3,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jooq.meta.jaxb.ForcedType
 
 plugins {
-    id("nu.studer.jooq") version "5.2"
-    id("org.springframework.boot") version "2.4.5"
+    id("nu.studer.jooq") version "5.2.1"
+    id("org.springframework.boot") version "2.5.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.4.32"
     kotlin("plugin.spring") version "1.4.32"
@@ -31,13 +31,13 @@ dependencies {
     implementation("org.valiktor:valiktor-core:0.12.0")
     implementation("org.valiktor:valiktor-spring:0.12.0")
 
-    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:2.7.1")
+    implementation("mysql:mysql-connector-java:8.0.26")
 
     implementation("io.springfox:springfox-boot-starter:3.0.0")
     implementation("io.springfox:springfox-swagger-ui:3.0.0")
 
-    jooqGenerator("org.mariadb.jdbc:mariadb-java-client:2.7.1")
-    jooqGenerator("org.jooq:jooq-kotlin:3.14.7")
+    jooqGenerator("mysql:mysql-connector-java:8.0.26")
+    jooqGenerator("org.jooq:jooq:3.14.8")
 }
 
 tasks.withType<KotlinCompile> {
@@ -52,7 +52,7 @@ tasks.withType<Test> {
 }
 
 jooq {
-    version.set("3.14.7")
+    version.set("3.14.8")
     edition.set(JooqEdition.OSS)
 
     configurations {
@@ -60,15 +60,15 @@ jooq {
             jooqConfiguration.apply {
                 logging = org.jooq.meta.jaxb.Logging.WARN
                 jdbc.apply {
-                    driver = "org.mariadb.jdbc.Driver"
-                    url = "jdbc:mariadb://localhost:3306/kotlin_boot"
-                    user = "root"
-                    password = "root"
+                    driver = "com.mysql.cj.jdbc.Driver"
+                    url = "jdbc:mysql://localhost:3307/kotlin_boot"
+                    user = "admin"
+                    password = "pass"
                 }
                 generator.apply {
                     name = "org.jooq.codegen.DefaultGenerator"
                     database.apply {
-                        name = "org.jooq.meta.mariadb.MariaDBDatabase"
+                        name = "org.jooq.meta.mysql.MySQLDatabase"
                         inputSchema = "kotlin_boot"
                         forcedTypes.addAll(
                             arrayOf(
