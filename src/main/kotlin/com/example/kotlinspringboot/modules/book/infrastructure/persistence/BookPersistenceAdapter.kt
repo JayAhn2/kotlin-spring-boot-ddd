@@ -30,8 +30,8 @@ class BookPersistenceAdapter(private val bookRepository: BookRepository) :
         return BookMapper.mapToDomainEntity(result)
     }
 
-    fun deleteById(bookId: BookId) {
-        bookRepository.deleteById(bookId.value)
+    override fun deleteById(id: BookId) {
+        bookRepository.deleteById(id.value)
     }
 }
 

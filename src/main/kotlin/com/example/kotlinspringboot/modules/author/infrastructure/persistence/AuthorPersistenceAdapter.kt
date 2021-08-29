@@ -27,5 +27,9 @@ class AuthorPersistenceAdapter(private val authorRepository: AuthorRepository) :
         val author = authorRepository.update(AuthorMapper.mapToJdbcEntity(domain))
         return AuthorMapper.mapToDomainEntity(author)
     }
+
+    override fun deleteById(id: AuthorId) {
+        authorRepository.deleteById(id.value);
+    }
 }
 
