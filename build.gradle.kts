@@ -1,11 +1,14 @@
 import nu.studer.gradle.jooq.JooqEdition
+import nu.studer.gradle.jooq.JooqGenerate
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jooq.meta.jaxb.ForcedType
 
 plugins {
-    id("nu.studer.jooq") version "5.2.1"
+    id("nu.studer.jooq") version "6.0.1"
+    id("org.flywaydb.flyway") version "7.15.0"
     id("org.springframework.boot") version "2.5.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
+
     kotlin("jvm") version "1.4.32"
     kotlin("plugin.spring") version "1.4.32"
     kotlin("plugin.jpa") version "1.4.32"
@@ -37,7 +40,11 @@ dependencies {
     implementation("io.springfox:springfox-swagger-ui:3.0.0")
 
     jooqGenerator("mysql:mysql-connector-java:8.0.26")
-    jooqGenerator("org.jooq:jooq:3.14.8")
+    jooqGenerator("org.jooq:jooq:3.15.4")
+
+    // Flyway
+    implementation("org.flywaydb:flyway-core:7.15.0")
+    testImplementation("org.flywaydb.flyway-test-extensions:flyway-spring-test:7.0.0")
 }
 
 tasks.withType<KotlinCompile> {
@@ -51,8 +58,24 @@ tasks.withType<Test> {
     useJUnitPlatform()
 }
 
+
+
+buildscript {
+    configurations["classpath"].resolutionStrategy.eachDependency {
+        if (requested.group == "org.jooq") {
+            useVersion("3.15.4")
+        }
+    }
+}
+
+flyway {
+    url = "jdbc:mysql://localhost:3307/kotlin_boot"
+    user = "admin"
+    password = "pass"
+}
+
 jooq {
-    version.set("3.14.8")
+    version.set("3.15.4")
     edition.set(JooqEdition.OSS)
 
     configurations {
@@ -98,4 +121,14 @@ jooq {
             }
         }
     }
+}
+
+tasks.named<JooqGenerate>("generateJooq") {
+    dependsOn("flywayMigrate")
+    inputs.files(fileTree("src/main/resources/db/migration"))
+        .withPropertyName("migration")
+        .withPathSensitivity(PathSensitivity.RELATIVE)
+
+    allInputsDeclared.set(true)
+    outputs.cacheIf { true }
 }
