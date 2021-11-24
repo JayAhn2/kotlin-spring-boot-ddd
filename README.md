@@ -9,9 +9,7 @@
 $ ./gradlew build
 ```
 
-##Swagger UI
+## Swagger UI
 ```
 http://localhost:8080/swagger-ui/#/
 ```
-
-##Architecture
